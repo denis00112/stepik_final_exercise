@@ -1,5 +1,4 @@
 from .base_page import BasePage
-from selenium.webdriver.common.by import By
 from .locators import ProductPageLocators
 
 
@@ -23,4 +22,6 @@ class ProductPage(BasePage):
         # реализуйте проверку, что есть форма логина
         assert product_price.text == basket_price.text, "Prices differ"
 
-
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(
+            *ProductPageLocators.ADDED_PRODUCT_NAME), "Message present without adding product to basket, but should not be"
